@@ -36,11 +36,15 @@ public class ProjectService {
         this.projectRepository.deleteById(projectId);
     }
 
+    public void updateProject(int projectId, Project project) {
+        this.projectRepository.save(project);
+    }
+
     public void deleteAllProjects() {
         this.projectRepository.deleteAll();
     }
 
-    public void updateProject(Project project) {
+    public void createProject(Project project) {
         this.projectRepository.save(project);
     }
 }
