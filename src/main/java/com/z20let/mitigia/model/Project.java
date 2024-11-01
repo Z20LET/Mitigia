@@ -20,9 +20,8 @@ public class Project {
     @Id
     private Integer projectId;
     private String licensePlate;
-
     @ManyToOne
-    @JoinColumn(name = "vehicleId", referencedColumnName = "vehicleId")
+    @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
     private Date startDate;
     private Date endDate;
