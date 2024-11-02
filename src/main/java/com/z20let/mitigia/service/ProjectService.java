@@ -6,7 +6,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,26 +53,42 @@ public class ProjectService {
         this.projectRepository.save(project);
     }
 
-    public void updateOdometer(String licensePlate, Integer odometer, OffsetDateTime date) {
+    public String updateOdometer(String licensePlate, String odometer, String date) {
+        OffsetDateTime dateTime;
+        try {
+            LocalDate localDate = LocalDate.parse(date);
+            dateTime = localDate.atStartOfDay().atOffset(ZoneOffset.UTC);
+        } catch (Exception e) {
+            return "Provide a valid date format is 'yyyy-MM-dd'";
+        }
+
         Optional<Project> optionalProject = this.projectRepository.findByLicensePlate(licensePlate);
 
         if (optionalProject.isEmpty()) {
-            throw new IllegalArgumentException("License plate not found.");
+            return "License plate not found.";
         }
 
         Project project = optionalProject.get();
 
-        if (odometer <= project.getOdometer()) {
-            throw new IllegalArgumentException("Odometer reading must be greater than the current reading.");
+        int odometerInt;
+        try {
+            odometerInt = Integer.parseInt(odometer);
+        } catch (NumberFormatException e) {
+            return "Provide a valid odometer reading.";
         }
 
-        if (!date.isAfter(project.getDate())) {
-            throw new IllegalArgumentException("Date must be after the current date.");
+        if (odometerInt <= project.getOdometer()) {
+            return "Odometer reading must be greater than the current reading.";
         }
 
-        project.setOdometer(odometer);
-        project.setDate(date);
+        if (!dateTime.isAfter(project.getDate())) {
+            return "Date must be after the current date.";
+        }
+
+        project.setOdometer(odometerInt);
+        project.setDate(dateTime);
         this.projectRepository.save(project);
+        return "Odometer updated successfully.";
     }
 
 }
