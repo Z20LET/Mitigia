@@ -6,7 +6,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Optional;
+
 
 @Service
 @AllArgsConstructor
@@ -47,4 +50,27 @@ public class ProjectService {
     public void createProject(Project project) {
         this.projectRepository.save(project);
     }
+
+    public void updateOdometer(String licensePlate, Integer odometer, OffsetDateTime date) {
+        Optional<Project> optionalProject = this.projectRepository.findByLicensePlate(licensePlate);
+
+        if (optionalProject.isEmpty()) {
+            throw new IllegalArgumentException("License plate not found.");
+        }
+
+        Project project = optionalProject.get();
+
+        if (odometer <= project.getOdometer()) {
+            throw new IllegalArgumentException("Odometer reading must be greater than the current reading.");
+        }
+
+        if (!date.isAfter(project.getDate())) {
+            throw new IllegalArgumentException("Date must be after the current date.");
+        }
+
+        project.setOdometer(odometer);
+        project.setDate(date);
+        this.projectRepository.save(project);
+    }
+
 }

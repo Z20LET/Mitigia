@@ -43,10 +43,10 @@ public class ProjectUploadService {
                     switch (cellIndex) {
                         case 0 -> project.setProjectId((int) cell.getNumericCellValue());
                         case 1 -> project.setLicensePlate(cell.getStringCellValue());
-                        case 2 -> vehicle.setVehicleId((long) cell.getNumericCellValue());
+                        case 2 -> project.setVehicleId((long) cell.getNumericCellValue());
                         case 3 -> project.setStartDate(cell.getDateCellValue());
                         case 4 -> project.setEndDate(cell.getDateCellValue());
-                        case 5 ->project.setStartOdometer((int) cell.getNumericCellValue());
+                        case 5 -> project.setStartOdometer((int) cell.getNumericCellValue());
                         case 6 -> project.setEndOdometer((int) cell.getNumericCellValue());
                         default -> {
                         }

@@ -8,6 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +38,17 @@ public class ProjectController {
     public ResponseEntity<?> updateProject(@RequestParam("id") Integer projectId, @RequestBody Project project) {
         this.projectService.updateProject(projectId, project);
         return ResponseEntity.ok(Map.of("Message", "Project updated successfully"));
+    }
+
+    @PutMapping("/update-odometer")
+    public ResponseEntity<?> updateOdometer(@RequestParam("licensePlate") String licensePlate,
+                                            @RequestParam("odometer") Integer odometer,
+                                            @RequestParam("date") String date){
+        LocalDate localDate = LocalDate.parse(date);
+        OffsetDateTime dateTime = localDate.atStartOfDay().atOffset(ZoneOffset.UTC);
+
+        this.projectService.updateOdometer(licensePlate, odometer, dateTime);
+        return ResponseEntity.ok(Map.of("Message", "Odometer updated successfully"));
     }
 
     @GetMapping("/all-projects")
