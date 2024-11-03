@@ -1,15 +1,14 @@
 package com.z20let.mitigia.service;
 
 import com.z20let.mitigia.model.Project;
-import com.z20let.mitigia.model.Vehicle;
+import com.z20let.mitigia.model.ProjectDTO;
 import com.z20let.mitigia.repository.ProjectRepository;
-import com.z20let.mitigia.repository.VehicleRepository;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -40,5 +39,16 @@ public class ProjectService {
         return projectRepository.findAll();
     }
 
+
+    public void createProject(ProjectDTO object) {
+        Project project = new Project();
+        project.setProjectId(object.getProjectId());
+        project.setStartDate(object.getStartDate());
+        project.setEndDate(object.getEndDate());
+        project.setStartMileage(object.getStartOdometer());
+        project.setStartMileage(object.getEndOdometer());
+        project.setVehicle(vehicleService.updateLicensePlate(object.getVehicleId(), object.getLicensePlate()));
+        projectRepository.save(project);
+    }
 
 }

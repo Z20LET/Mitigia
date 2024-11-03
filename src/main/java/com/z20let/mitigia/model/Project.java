@@ -25,3 +25,4 @@ public class Project {
     @JoinColumn(name = "vehicle_id")
     Vehicle vehicle;
 }
+
