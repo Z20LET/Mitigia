@@ -13,9 +13,7 @@ import lombok.Setter;
 @Entity
 public class CarbonIntensity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private Integer carbonIntensity;
     private Integer year;
+    private Integer carbonIntensity;
     private String country;
 }

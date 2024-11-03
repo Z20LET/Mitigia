@@ -17,11 +17,14 @@ public class ProjectService {
 
     private final VehicleService vehicleService;
     private ProjectRepository projectRepository;
+    private CarbonIntensityService carbonIntensityService;
+    private DefaultECService defaultECService;
+
 
     public void saveProject(MultipartFile file) {
-        if (ExcelToDatabaseService.validateExcelFile(file)) {
+        if (com.z20let.mitigia.service.ExcelToDatabaseService.validateExcelFile(file)) {
             try {
-                List<Project> projects = ExcelToDatabaseService.getDataFromExcelFile(file.getInputStream());
+                List<Project> projects = com.z20let.mitigia.service.ExcelToDatabaseService.getDataFromExcelFile(file.getInputStream());
                 for (Project project : projects) {
                     Vehicle vehicle = project.getVehicle();
                     Optional<Vehicle> existingVehicleOpt = vehicleService.findById(vehicle.getVehicleId());
@@ -35,6 +38,7 @@ public class ProjectService {
                     }
                 }
                 projectRepository.saveAll(projects);
+                calculateEmissions();
             } catch (IOException e) {
                 throw new IllegalArgumentException("This is not a valid excel file");
             }
@@ -80,6 +84,38 @@ public class ProjectService {
 
     public void deleteAllProjects() {
         projectRepository.deleteAll();
+    }
+
+    public void calculateEmissions() {
+        List<Project> projects = getAllProjects();
+        for (Project project : projects) {
+            Vehicle vehicle = project.getVehicle();
+            int mileage = project.getEndMileage() - project.getStartMileage();
+            System.out.println(mileage);
+            int carbonIntensity = carbonIntensityService.getCarbonIntensity(project.getEndDate().getYear());
+            System.out.println(carbonIntensity);
+            int energyConsumption = getEnergyConsumption(vehicle);
+            System.out.println(energyConsumption);
+            project.setCarbonEmission(mileage * energyConsumption * carbonIntensity);
+        }
+        projectRepository.saveAll(projects);
+    }
+
+    private int getEnergyConsumption(Vehicle vehicle) {
+        Integer energyConsumptionWLTP = vehicle.getEnergyConsumptionWLTP();
+        Integer energyConsumptionNEDC = vehicle.getEnergyConsumptionNEDC();
+
+        int energyConsumption = 0;
+
+        if (energyConsumptionWLTP != null) {
+            energyConsumption = energyConsumptionWLTP; // Wh/km
+        } else if (energyConsumptionNEDC != null) {
+            energyConsumption = energyConsumptionNEDC * 10; // Convert kWh/100km to Wh/km
+        } else {
+            Integer defaultEnergyConsumption = defaultECService.getDefaultEC();
+            energyConsumption = (defaultEnergyConsumption != null) ? defaultEnergyConsumption : 188; // default value in Wh/km
+        }
+        return energyConsumption;
     }
 
 

@@ -5,5 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CarbonIntensityRepository extends JpaRepository<CarbonIntensity, Integer> {
 
-    Integer findCarbonIntensityBy(Integer year);
 }
