@@ -28,4 +28,11 @@ public class ProjectController {
         projectService.saveProject(file);
         return ResponseEntity.ok(Map.of("Message", "Project uploaded successfully"));
     }
+
+    @PutMapping("update-project-by-id")
+    public ResponseEntity<?> updateProject(@RequestBody ProjectDTO project){
+        projectService.updateProject(project);
+        return ResponseEntity.ok(Map.of("Message", "Project updated successfully"));
+    }
+
 }

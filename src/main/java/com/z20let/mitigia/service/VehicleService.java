@@ -17,16 +17,17 @@ public class VehicleService {
         vehicleRepository.deleteById(id);
     }
 
-    public Vehicle updateLicensePlate(Long id, String licensePlate) {
-        Optional<Vehicle> optionalVehicle = vehicleRepository.findById(id);
-
-        if (optionalVehicle.isPresent()) {
-            Vehicle vehicle = optionalVehicle.get();
-            vehicle.setLicensePlate(licensePlate);
-            return vehicleRepository.save(vehicle);
-        } else {
-            throw new RuntimeException("Vehicle not found with id: " + id);
+    public Vehicle addLicensePlate(Long id, String licensePlate) {
+        Optional<Vehicle> existingVehicleOpt = vehicleRepository.findById(id);
+        Vehicle vehicle = new Vehicle();
+        if (existingVehicleOpt.isPresent()) {
+            vehicle = existingVehicleOpt.get();
         }
+        vehicle.setLicensePlate(licensePlate);
+        return vehicleRepository.save(vehicle);
     }
 
+    public Optional<Vehicle> findById(Long vehicleId) {
+        return vehicleRepository.findById(vehicleId);
+    }
 }
