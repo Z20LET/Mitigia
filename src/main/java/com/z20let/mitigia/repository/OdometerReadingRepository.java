@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OdometerRepository extends JpaRepository<OdometerReading, Integer> {
+public interface OdometerReadingRepository extends JpaRepository<OdometerReading, Integer> {
 }

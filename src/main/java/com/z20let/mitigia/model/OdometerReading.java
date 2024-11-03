@@ -17,4 +17,10 @@ public class OdometerReading {
     private LocalDate date;
     private Integer mileage;
     private String licensePlate;
+
+    public OdometerReading(String licensePlate, int odometer, LocalDate date) {
+        this.date = date;
+        this.mileage = odometer;
+        this.licensePlate = licensePlate;
+    }
 }

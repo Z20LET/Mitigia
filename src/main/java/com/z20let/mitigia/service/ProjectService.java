@@ -4,10 +4,12 @@ import com.z20let.mitigia.model.Project;
 import com.z20let.mitigia.model.ProjectDTO;
 import com.z20let.mitigia.model.Vehicle;
 import com.z20let.mitigia.repository.ProjectRepository;
+import com.z20let.mitigia.repository.VehicleRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +19,7 @@ public class ProjectService {
 
     private final VehicleService vehicleService;
     private ProjectRepository projectRepository;
+    private VehicleRepository vehicleRepository;
 
     public void saveProject(MultipartFile file) {
         if (ExcelToDatabaseService.validateExcelFile(file)) {
