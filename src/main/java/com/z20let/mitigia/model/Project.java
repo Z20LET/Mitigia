@@ -21,7 +21,7 @@ public class Project {
     private Integer startMileage;
     private Integer endMileage;
     private Double carbonEmission;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "vehicle_id")
     Vehicle vehicle;
 }

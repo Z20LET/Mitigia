@@ -5,7 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CarbonRepository {
-    interface OdometerRepository extends JpaRepository<CarbonIntensity, Integer> {
-    }
+public interface CarbonRepository extends JpaRepository<CarbonIntensity, Integer> {
 }

@@ -68,4 +68,17 @@ public class ProjectService {
         project.setVehicle(vehicleService.addLicensePlate(object.getVehicleId(), object.getLicensePlate()));
         projectRepository.save(project);
     }
+
+    public Optional<Project> getProjectById(Integer id) {
+        return projectRepository.findById(id);
+    }
+
+    public String deleteProjectById(Integer projectId) {
+       projectRepository.deleteById(projectId);
+       return "Project deleted successfully";
+    }
+
+    public void deleteAllProjects() {
+        projectRepository.deleteAll();
+    }
 }

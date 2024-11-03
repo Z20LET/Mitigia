@@ -1,6 +1,5 @@
 package com.z20let.mitigia.controller;
 
-import com.z20let.mitigia.model.Project;
 import com.z20let.mitigia.model.ProjectDTO;
 import com.z20let.mitigia.service.ProjectService;
 import lombok.AllArgsConstructor;
@@ -35,4 +34,24 @@ public class ProjectController {
         return ResponseEntity.ok(Map.of("Message", "Project updated successfully"));
     }
 
+    @GetMapping("all-projects")
+    public ResponseEntity<?> getAllProjects(){
+        return ResponseEntity.ok(projectService.getAllProjects());
+    }
+
+    @GetMapping("get-project-by-id")
+    public ResponseEntity<?> getProjectById(@RequestParam("id") Integer projectId){
+        return ResponseEntity.ok(projectService.getProjectById(projectId));
+    }
+
+    @DeleteMapping("delete-project-by-id")
+    public ResponseEntity<?> deleteProject(@RequestParam("id") Integer projectId){
+        return ResponseEntity.ok(projectService.deleteProjectById(projectId));
+    }
+
+    @DeleteMapping("delete-all")
+    public ResponseEntity<?> deleteAllProjects(){
+        projectService.deleteAllProjects();
+        return ResponseEntity.ok(Map.of("Message", "All projects deleted successfully"));
+    }
 }
