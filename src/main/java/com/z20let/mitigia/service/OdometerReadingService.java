@@ -16,6 +16,7 @@ import java.util.Optional;
 @Service
 public class OdometerReadingService {
 
+    private ProjectService projectService;
     private VehicleRepository vehicleRepository;
     private ProjectRepository projectRepository;
     private OdometerReadingRepository odometerRepository;
@@ -58,6 +59,7 @@ public class OdometerReadingService {
         createOdometerReading(licensePlate, project.getEndMileage()-project.getStartMileage(), localDate);
         project.getVehicle().setMileage(odometerInt);
         this.projectRepository.save(project);
+        projectService.calculateEmission(project);
         return "Odometer updated successfully.";
     }
 

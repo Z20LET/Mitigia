@@ -20,7 +20,7 @@ public class Project {
     private LocalDate endDate;
     private Integer startMileage;
     private Integer endMileage;
-    private Integer carbonEmission;
+    private Long carbonEmission;
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "vehicle_id")
     Vehicle vehicle;

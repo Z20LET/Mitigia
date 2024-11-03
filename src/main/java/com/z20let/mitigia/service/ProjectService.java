@@ -91,12 +91,11 @@ public class ProjectService {
         for (Project project : projects) {
             Vehicle vehicle = project.getVehicle();
             int mileage = project.getEndMileage() - project.getStartMileage();
-            System.out.println(mileage);
             int carbonIntensity = carbonIntensityService.getCarbonIntensity(project.getEndDate().getYear());
-            System.out.println(carbonIntensity);
             int energyConsumption = getEnergyConsumption(vehicle);
-            System.out.println(energyConsumption);
-            project.setCarbonEmission(mileage * energyConsumption * carbonIntensity);
+            long carbonEmission = ((long) mileage) * energyConsumption * carbonIntensity;
+            project.setCarbonEmission(carbonEmission);
+            System.out.println(carbonEmission);
         }
         projectRepository.saveAll(projects);
     }
@@ -118,5 +117,11 @@ public class ProjectService {
         return energyConsumption;
     }
 
-
+    public void calculateEmission(Project project) {
+        int mileage = project.getEndMileage() - project.getStartMileage();
+        int carbonIntensity = carbonIntensityService.getCarbonIntensity(project.getEndDate().getYear());
+        int energyConsumption = getEnergyConsumption(project.getVehicle());
+        long carbonEmission = ((long) mileage) * energyConsumption * carbonIntensity;
+        project.setCarbonEmission(carbonEmission);
+    }
 }
