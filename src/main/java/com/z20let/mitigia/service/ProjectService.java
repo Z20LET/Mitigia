@@ -33,12 +33,12 @@ public class ProjectService {
                         Vehicle existingVehicle = existingVehicleOpt.get();
                         existingVehicle.setLicensePlate(vehicle.getLicensePlate());
                         project.setVehicle(existingVehicle);
+                        calculateEmission(project);
                     } else {
                         vehicleService.addLicensePlate(vehicle.getVehicleId(), vehicle.getLicensePlate());
                     }
                 }
                 projectRepository.saveAll(projects);
-                calculateEmissions();
             } catch (IOException e) {
                 throw new IllegalArgumentException("This is not a valid excel file");
             }
@@ -86,20 +86,6 @@ public class ProjectService {
         projectRepository.deleteAll();
     }
 
-    public void calculateEmissions() {
-        List<Project> projects = getAllProjects();
-        for (Project project : projects) {
-            Vehicle vehicle = project.getVehicle();
-            int mileage = project.getEndMileage() - project.getStartMileage();
-            int carbonIntensity = carbonIntensityService.getCarbonIntensity(project.getEndDate().getYear());
-            int energyConsumption = getEnergyConsumption(vehicle);
-            long carbonEmission = ((long) mileage) * energyConsumption * carbonIntensity;
-            project.setCarbonEmission(carbonEmission);
-            System.out.println(carbonEmission);
-        }
-        projectRepository.saveAll(projects);
-    }
-
     private int getEnergyConsumption(Vehicle vehicle) {
         Integer energyConsumptionWLTP = vehicle.getEnergyConsumptionWLTP();
         Integer energyConsumptionNEDC = vehicle.getEnergyConsumptionNEDC();
@@ -121,7 +107,10 @@ public class ProjectService {
         int mileage = project.getEndMileage() - project.getStartMileage();
         int carbonIntensity = carbonIntensityService.getCarbonIntensity(project.getEndDate().getYear());
         int energyConsumption = getEnergyConsumption(project.getVehicle());
-        long carbonEmission = ((long) mileage) * energyConsumption * carbonIntensity;
-        project.setCarbonEmission(carbonEmission);
+        int energyConsumptionkWh = mileage * energyConsumption / 1000;
+        int carbonEmissiongCO2eq = energyConsumptionkWh * carbonIntensity;
+        double carbonEmissiongkgCO2eq = (double) carbonEmissiongCO2eq / 1000;
+        project.setCarbonEmission(carbonEmissiongkgCO2eq);
+        projectRepository.save(project);
     }
 }
