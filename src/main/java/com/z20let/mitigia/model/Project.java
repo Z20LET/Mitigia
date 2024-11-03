@@ -15,14 +15,13 @@ import java.time.LocalDate;
 @Entity
 public class Project {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer projectId;
     private LocalDate startDate;
     private LocalDate endDate;
     private Integer startMileage;
     private Integer endMileage;
     private Double carbonEmission;
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "vehicle_id")
     Vehicle vehicle;
 }

@@ -3,8 +3,6 @@ package com.z20let.mitigia.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Collection;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,13 +14,9 @@ public class Vehicle {
     private String make;
     private String model;
     private String type;
+    private String fuelType;
     private String year;
     private Integer mileage;
     private Integer energyConsumptionWLTP;
     private Integer energyConsumptionNEDC;
-    @Getter
-    @Setter
-    @OneToMany(mappedBy = "vehicle")
-    private Collection<OdometerReading> odometerReading;
-
 }
