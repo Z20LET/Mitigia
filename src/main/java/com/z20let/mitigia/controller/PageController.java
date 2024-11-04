@@ -5,10 +5,11 @@ import com.z20let.mitigia.service.OdometerReadingService;
 import com.z20let.mitigia.service.ProjectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @Controller
@@ -49,8 +50,25 @@ public class PageController {
         return "odometer";
     }
 
-    @GetMapping("piechart")
-    public String pieChart() {
-        return "piechart";
+    @GetMapping("/manage-projects")
+    public String manageProjects(Model model) {
+        return "manage";
+    }
+
+    @PostMapping("/create-projects")
+    public String manageProjects(@RequestParam ("file") MultipartFile file, Model model) {
+        projectService.saveProject(file);
+        return "manage";
+    }
+
+    @DeleteMapping("/delete-projects")
+    public String deleteProjects(Model model) {
+        projectService.deleteAllProjects();
+        return "manage";
+    }
+
+    @GetMapping("/contact")
+    public String contact() {
+        return "contact";
     }
 }

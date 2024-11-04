@@ -12,28 +12,24 @@
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/list-projects">Projects</a></li>
-            <li><a href="/manage-projects">Manage Projects</a></li>
+            <li><a href="/odometer">Update Odometer</a></li>
             <li><a href="/contact">Contact</a></li>
         </ul>
     </nav>
 </header>
 
 <main>
-    <h1>Update Odometer</h1>
-    <form action="#" th:action="@{/update-odometer}" method="post">
+    <h1>Manage Projects</h1>
+    <form action="#" th:action="@{/manage-projects}" method="post" enctype="multipart/form-data">
         <div>
-            <label for="param1">License Plate:</label>
-            <input type="text" id="param1" name="licensePlate">
+            <label for="file">Upload Excel File:</label>
+            <input type="file" id="file" name="file" accept=".xlsx,.xls">
         </div>
-        <div>
-            <label for="param2">Odometer:</label>
-            <input type="text" id="param2" name="odometer">
-        </div>
-        <div>
-            <label for="param3">Date:</label>
-            <input type="text" id="param3" name="date">
-        </div>
-        <button type="submit">Update Odometer</button>
+        <button type="submit">Upload File</button>
+    </form>
+
+    <form action="#" th:action="@{/delete-projects}" method="delete">
+        <button type="submit">Delete All Projects</button>
     </form>
 
     <p th:text="${responseMessage}">Response message will appear here.</p>

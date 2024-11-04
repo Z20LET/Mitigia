@@ -62,6 +62,7 @@ public class ProjectService {
         projectRepository.save(project);
     }
 
+
     public void updateProject(ProjectDTO object) {
         Project project = projectRepository.findById(object.getProjectId()).get();
         project.setProjectId(object.getProjectId());
@@ -114,4 +115,5 @@ public class ProjectService {
         project.setCarbonEmission(carbonEmission_kgCO2eq);
         projectRepository.save(project);
     }
+
 }
