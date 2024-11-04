@@ -1,0 +1,57 @@
+<!-- src/main/resources/templates/projects.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Projects</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/odometer">Update Odometer</a></li>
+            <li><a href="/piechart">Pie Chart</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <h1>Project List</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Manufacturer</th>
+            <th>Model</th>
+            <th>Year</th>
+            <th>Type</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Mileage</th>
+            <th>kgCO₂</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="project : ${projects}">
+            <td th:text="${project.projectId}"></td>
+            <td th:text="${project.vehicle.getMake()}"></td>
+            <td th:text="${project.vehicle.getModel()}"></td>
+            <td th:text="${project.vehicle.getYear()}"></td>
+            <td th:text="${project.vehicle.getType()}"></td>
+            <td th:text="${project.startDate}"></td>
+            <td th:text="${project.endDate}"></td>
+            <td th:text="${project.vehicle.getMileage()}"></td>
+            <td th:text="${project.carbonEmission}"></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+<footer>
+    <p>&copy; 2024 Márton Trautmann</p>
+</footer>
+<script th:src="@{/js/scripts.js}"></script>
+</body>
+</html>

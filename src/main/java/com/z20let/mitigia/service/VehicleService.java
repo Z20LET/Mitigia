@@ -4,7 +4,6 @@ import com.z20let.mitigia.model.Vehicle;
 import com.z20let.mitigia.repository.VehicleRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 
 @AllArgsConstructor

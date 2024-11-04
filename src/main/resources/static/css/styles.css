@@ -1,0 +1,126 @@
+/* src/main/resources/static/css/styles.css */
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('/img/background.webp') no-repeat center center fixed;
+    background-size: cover;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+scrollable-element {
+    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.scrollable-element::-webkit-scrollbar {
+    display: none;
+}
+
+
+header {
+    background-color: rgba(42, 141, 200, 0.85);
+    padding: 1rem 0;
+}
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+nav li {
+    margin: 0 1rem;
+}
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+nav a:hover {
+    text-decoration: underline;
+}
+main {
+    padding: 2rem;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    margin: 2rem auto;
+    width: 80%;
+    max-width: 800px;
+}
+h1 {
+    color: #2A8DC8;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+}
+table, th, td {
+    border: 1px solid #ddd;
+}
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: bold;
+    width: 150px;
+}
+th {
+    background-color: #2A8DC8;
+    color: white;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+tr:hover {
+    background-color: #f1f1f1;
+}
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.8); /* white semi-transparent background */
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+}
+form div {
+    margin-bottom: 1rem;
+}
+form label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+form input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+form button {
+    padding: 0.75rem 1.5rem;
+    background-color: #2A8DC8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+form button:hover {
+    background-color: #2478a3;
+}

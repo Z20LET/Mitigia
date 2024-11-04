@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Odometer</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/list-projects">Projects</a></li>
+            <li><a href="/piechart">Pie Chart</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <h1>Update Odometer</h1>
+    <form action="#" th:action="@{/update-odometer}" method="post">
+        <div>
+            <label for="param1">License Plate:</label>
+            <input type="text" id="param1" name="licensePlate">
+        </div>
+        <div>
+            <label for="param2">Odometer:</label>
+            <input type="text" id="param2" name="odometer">
+        </div>
+        <div>
+            <label for="param3">Date:</label>
+            <input type="text" id="param3" name="date">
+        </div>
+        <button type="submit">Update Odometer</button>
+    </form>
+
+    <p th:text="${responseMessage}">Response message will appear here.</p>
+</main>
+
+<footer>
+    <p>&copy; 2024 Márton Trautmann</p>
+</footer>
+</body>
+</html>

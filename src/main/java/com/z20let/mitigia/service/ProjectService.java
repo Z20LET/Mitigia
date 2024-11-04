@@ -105,12 +105,13 @@ public class ProjectService {
 
     public void calculateEmission(Project project) {
         int mileage = project.getEndMileage() - project.getStartMileage();
+        project.getVehicle().setMileage(mileage);
         int carbonIntensity = carbonIntensityService.getCarbonIntensity(project.getEndDate().getYear());
         int energyConsumption = getEnergyConsumption(project.getVehicle());
-        int energyConsumptionkWh = mileage * energyConsumption / 1000;
-        int carbonEmissiongCO2eq = energyConsumptionkWh * carbonIntensity;
-        double carbonEmissiongkgCO2eq = (double) carbonEmissiongCO2eq / 1000;
-        project.setCarbonEmission(carbonEmissiongkgCO2eq);
+        int energyConsumption_kWh = mileage * energyConsumption / 1000;
+        int carbonEmission_gCO2eq = energyConsumption_kWh * carbonIntensity;
+        double carbonEmission_kgCO2eq = (double) carbonEmission_gCO2eq / 1000;
+        project.setCarbonEmission(carbonEmission_kgCO2eq);
         projectRepository.save(project);
     }
 }

@@ -12,7 +12,7 @@ import java.util.Map;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping( "/odometer")
+@RequestMapping( "/api/odometer")
 public class OdometerReadingController {
 
     private OdometerReadingService odometerService;
