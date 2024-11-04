@@ -1,0 +1,30 @@
+<!-- src/main/resources/templates/index.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mitigia</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="/list-projects">Projects</a></li>
+            <li><a href="/odometer">Update Odometer</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <h1 th:text="${message}">Welcome to our website!</h1>
+    <p>A RESTful application for Junior DevOps Position</p>
+</main>
+<footer>
+    <p>&copy; 2024 Márton Trautmann</p>
+</footer>
+<script th:src="@{/js/scripts.js}"></script>
+</body>
+</html>
