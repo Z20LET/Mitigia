@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Odometer</title>
+    <title>Manage Projects</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
@@ -20,7 +20,7 @@
 
 <main>
     <h1>Manage Projects</h1>
-    <form action="#" th:action="@{/manage-projects}" method="post" enctype="multipart/form-data">
+    <form action="/create-projects" method="post" enctype="multipart/form-data">
         <div>
             <label for="file">Upload Excel File:</label>
             <input type="file" id="file" name="file" accept=".xlsx,.xls">
@@ -28,11 +28,10 @@
         <button type="submit">Upload File</button>
     </form>
 
-    <form action="#" th:action="@{/delete-projects}" method="delete">
+    <form th:action="@{/delete-projects}" method="post">
+        <input type="hidden" name="_method" value="delete">
         <button type="submit">Delete All Projects</button>
     </form>
-
-    <p th:text="${responseMessage}">Response message will appear here.</p>
 </main>
 
 <footer>

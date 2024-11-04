@@ -5,7 +5,6 @@ import com.z20let.mitigia.service.OdometerReadingService;
 import com.z20let.mitigia.service.ProjectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,24 +50,28 @@ public class PageController {
     }
 
     @GetMapping("/manage-projects")
-    public String manageProjects(Model model) {
+    public String manageProjectsPage(Model model) {
         return "manage";
     }
 
     @PostMapping("/create-projects")
-    public String manageProjects(@RequestParam ("file") MultipartFile file, Model model) {
+    public String createProjects(@RequestParam("file") MultipartFile file, Model model) {
         projectService.saveProject(file);
         return "manage";
     }
 
-    @DeleteMapping("/delete-projects")
+    @PostMapping("/delete-projects")
     public String deleteProjects(Model model) {
         projectService.deleteAllProjects();
         return "manage";
     }
 
     @GetMapping("/contact")
-    public String contact() {
+    public String contact(Model model) {
+        model.addAttribute("message1", "https://github.com/Z20LET/Mitigia");
+        model.addAttribute("message2", "trautmann.marton@outlook.com");
+        model.addAttribute("message3","+36708856043");
+
         return "contact";
     }
 }
