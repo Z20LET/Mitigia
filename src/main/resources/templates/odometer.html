@@ -22,16 +22,16 @@
     <h1>Update Odometer</h1>
     <form action="#" th:action="@{/update-odometer}" method="post">
         <div>
+            <label for="param3">Date:</label>
+            <input type="text" id="param3" name="date">
+        </div>
+        <div>
             <label for="param1">License Plate:</label>
             <input type="text" id="param1" name="licensePlate">
         </div>
         <div>
             <label for="param2">Odometer:</label>
             <input type="text" id="param2" name="odometer">
-        </div>
-        <div>
-            <label for="param3">Date:</label>
-            <input type="text" id="param3" name="date">
         </div>
         <button type="submit">Update Odometer</button>
     </form>
