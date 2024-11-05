@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/carbon_footprint_db
+    url: jdbc:postgresql://mitigia-sql:5432/carbon_footprint_db
     username: postgres
     password: nincs
   jpa:
@@ -13,6 +13,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+    open-in-view: false
   servlet:
     multipart:
       enabled: true
