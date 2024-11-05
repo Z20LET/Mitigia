@@ -16,7 +16,7 @@ services:
 
   mitigia-app:
     container_name: mitigia
-    image: mitigia
+    image: marciiz20let/mitigia0.0.3:latest
     ports:
       - "8080:8080"
     networks:
