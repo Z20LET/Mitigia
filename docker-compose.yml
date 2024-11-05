@@ -1,0 +1,34 @@
+services:
+
+  postgres:
+    container_name: mitigia-sql
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: nincs
+      POSTGRES_DB: carbon_footprint_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres:/var/lib/postgres/data
+    networks:
+      - mitigia-net
+
+  mitigia-app:
+    container_name: mitigia
+    image: mitigia
+    ports:
+      - "8080:8080"
+    networks:
+      - mitigia-net
+    depends_on:
+      - postgres
+
+volumes:
+  postgres:
+
+networks:
+  mitigia-net:
+    driver: bridge
+
+
