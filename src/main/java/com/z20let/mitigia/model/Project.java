@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class Project {
 
     @Id
-    private int id;
+    private int projectId;
     private String licensePlate;
     private Long vehicleId;
     private LocalDateTime startDate;

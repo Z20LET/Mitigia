@@ -13,9 +13,9 @@ import lombok.NoArgsConstructor;
 public class Vehicle {
 
     @Id
-    private Long id;
+    private Long vehicleId;
     private int year;
-    private String make;
+    private String manufacturer;
     private String model;
     private String type;
     private String fuelType;
