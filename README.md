@@ -39,7 +39,7 @@ Mitigia is a fullstack web application designed as a showcase for Junior DevOps 
 
 - **/src**: Contains the application source code.
 - **/data**: Placeholder for data-related files and configurations.
-- **Docker & Compose YAML**: Dockerfile and `docker-compose.yaml` for container management.
+- **Docker & Compose YML**: Dockerfile and `docker-compose.yml` for container management.
 
 ## Contributing
 
