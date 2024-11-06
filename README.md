@@ -1,4 +1,3 @@
-
 # Mitigia
 
 ### Fullstack Application for Junior DevOps Position
@@ -8,6 +7,8 @@
 ## Project Overview
 
 Mitigia is a fullstack web application designed as a showcase for Junior DevOps skills. This project demonstrates expertise in backend development, DevOps pipelines, and containerization practices, utilizing **Java** and **Docker** to establish efficient deployment workflows and server management.
+
+The project is accessible at [http://52.57.148.133:8080/](http://52.57.148.133:8080/).
 
 ## Key Features
 
@@ -51,5 +52,4 @@ This project is licensed under the MIT License.
 
 ---
 
-> **Note for Reviewers**: This project was built as a practical demonstration of DevOps and backend capabilities, specifically for a Junior DevOps role.
-```
+> **Note for Reviewers**: This project was built as a practical demonstration of DevOps and backend capabilities, specifically for a Junior DevOps role. You can view the deployed application at [http://52.57.148.133:8080/](http://52.57.148.133:8080/).
