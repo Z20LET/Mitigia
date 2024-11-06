@@ -49,6 +49,18 @@ jobs:
           push: true
           tags: ${{secrets.DOCKER_HUB_USERNAME}}/mitigia:latest
 
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: ${{secrets.EC2_HOST}}
+          username: ${{secrets.EC2_USERNAME}}
+          key: ${{secrets.EC2_SSH_KEY}}
+          script: |
+            docker pull ${{secrets.DOCKER_HUB_USERNAME}}/mitigia:latest
+            docker-compose down
+            docker-compose up -d
+    
+
 
 
 
