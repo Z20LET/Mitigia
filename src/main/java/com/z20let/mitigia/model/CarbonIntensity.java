@@ -1,19 +1,19 @@
 package com.z20let.mitigia.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 public class CarbonIntensity {
+
     @Id
-    private Integer year;
-    private Integer carbonIntensity;
+    private int year;
+    private int carbonIntensity;
     private String country;
 }

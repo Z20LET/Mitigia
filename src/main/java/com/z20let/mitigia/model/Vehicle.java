@@ -1,22 +1,24 @@
 package com.z20let.mitigia.model;
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 public class Vehicle {
+
     @Id
-    private Long vehicleId;
-    private String licensePlate;
+    private Long id;
+    private int year;
     private String make;
     private String model;
     private String type;
     private String fuelType;
-    private String year;
-    private Integer mileage;
-    private Integer energyConsumptionWLTP;
-    private Integer energyConsumptionNEDC;
+    private int energyConsumptionWLTP;
+    private int energyConsumptionNEDC;
 }

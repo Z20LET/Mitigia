@@ -1,28 +1,24 @@
-
 package com.z20let.mitigia.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-@Getter
-@Setter
+@Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 public class Project {
-    @Id
-    private Integer projectId;
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private Integer startMileage;
-    private Integer endMileage;
-    private Double carbonEmission;
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "vehicle_id")
-    Vehicle vehicle;
-}
 
+    @Id
+    private int id;
+    private String licensePlate;
+    private Long vehicleId;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
+    private int startOdo;
+    private int endOdo;
+}
