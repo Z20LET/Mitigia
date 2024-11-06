@@ -4,7 +4,7 @@
 
 ---
 
-## Project Overview
+## Project Overview 
 
 Mitigia is a fullstack web application designed as a showcase for Junior DevOps skills. This project demonstrates expertise in backend development, DevOps pipelines, and containerization practices, utilizing **Java** and **Docker** to establish efficient deployment workflows and server management.
 
