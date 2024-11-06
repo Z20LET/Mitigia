@@ -15,7 +15,7 @@ public class VehicleController {
     private VehicleService vehicleService;
 
     @DeleteMapping("delete-vehicle-by-id")
-    public void deleteVehicle(@RequestParam("id") Long id){
+    public void deleteVehicle(@RequestParam("id") String id){
         vehicleService.deleteVehicleBy(id);
     }
 }

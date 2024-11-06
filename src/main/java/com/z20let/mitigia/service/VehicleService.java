@@ -12,7 +12,8 @@ public class VehicleService {
 
     private VehicleRepository vehicleRepository;
 
-    public void deleteVehicleBy(Long id) {
+    public void deleteVehicleBy(String text) {
+        Long id = Long.valueOf(text);
         vehicleRepository.deleteById(id);
     }
 
