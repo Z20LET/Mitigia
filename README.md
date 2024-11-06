@@ -29,6 +29,11 @@ The project is accessible at [http://52.57.148.133:8080/](http://52.57.148.133:8
    docker-compose up --build
    ```
 
+2. **Load Databse**:
+   ```bash
+   psql -h localhost -d carbon_footprint_db -p 5432 -U postgres <mitigia.sql
+   ```
+
 ## Technologies Used
 
 - **Java**: Core application logic.
