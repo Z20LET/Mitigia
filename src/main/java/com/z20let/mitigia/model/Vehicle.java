@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigInteger;
+import java.time.Year;
+
 @Data
 @Entity
 @AllArgsConstructor
@@ -13,11 +16,11 @@ import lombok.NoArgsConstructor;
 public class Vehicle {
 
     @Id
-    private Long vehicleId;
-    private int year;
-    private String manufacturer;
-    private String model;
-    private String type;
+    private long vehicleId;
+    private int vehicleYear;
+    private String vehicleManufacturer;
+    private String vehicleModel;
+    private String vehicleType;
     private String fuelType;
     private int energyConsumptionWLTP;
     private int energyConsumptionNEDC;
