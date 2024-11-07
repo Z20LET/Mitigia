@@ -49,8 +49,8 @@ public class ExcelToDatabaseService {
                         case 0 -> project.setProjectId((int) cell.getNumericCellValue());
                         case 1 -> project.setLicensePlate(cell.getStringCellValue());
                         case 2 -> project.setVehicleId((long) cell.getNumericCellValue());
-                        case 3 -> project.setStartDate(cell.getLocalDateTimeCellValue());
-                        case 4 -> project.setEndDate(cell.getLocalDateTimeCellValue());
+                        case 3 -> project.setStartDate(cell.getLocalDateTimeCellValue().toLocalDate());
+                        case 4 -> project.setEndDate(cell.getLocalDateTimeCellValue().toLocalDate());
                         case 5 -> project.setStartOdo((int) cell.getNumericCellValue());
                         case 6 -> project.setEndOdo((int) cell.getNumericCellValue());
                     }

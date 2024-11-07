@@ -1,9 +1,9 @@
 
 package com.z20let.mitigia.controller;
 
-import com.z20let.mitigia.model.Project;
 import com.z20let.mitigia.service.OdometerReadingService;
 import com.z20let.mitigia.service.ProjectService;
+import com.z20let.mitigia.service.VehicleService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import java.util.List;
 
 @AllArgsConstructor
 @Controller
@@ -19,6 +18,7 @@ public class PageController {
 
     private final ProjectService projectService;
     private final OdometerReadingService odometerService;
+    private VehicleService vehicleService;
 
 
     @GetMapping("/")
@@ -29,8 +29,8 @@ public class PageController {
 
     @GetMapping("/list-projects")
     public String listProjects(Model model) {
-        List<Project> projects = projectService.getAllProjects();
-        model.addAttribute("projects", projects);
+
+        model.addAttribute();
         return "projects";
     }
 

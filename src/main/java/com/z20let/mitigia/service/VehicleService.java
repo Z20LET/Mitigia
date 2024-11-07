@@ -25,4 +25,19 @@ public class VehicleService {
         }
     }
 
+    public List<Vehicle> getAllVehicles() {
+        return vehicleRepository.findAll();
+    }
+
+    public Vehicle getVehicleById(Long id) {
+        return vehicleRepository.findById(id).orElse(null);
+    }
+
+    public void deleteVehicleById(Long id) {
+        vehicleRepository.deleteById(id);
+    }
+
+    public List<Vehicle> getVehiclesById(List<Long> ids) {
+        return vehicleRepository.findAllById(ids);
+    }
 }

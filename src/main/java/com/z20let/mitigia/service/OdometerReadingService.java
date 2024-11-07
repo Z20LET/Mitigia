@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -21,18 +20,18 @@ public class OdometerReadingService {
     public String updateOdometer(String licensePlate, String odometer, String date) {
         LocalDate localDate;
         try {
-            LocalDateTime localDateTime = LocalDateTime.parse(date);
+            localDate = LocalDate.parse(date);
         } catch (Exception e) {
             return "Provide a valid date format is 'yyyy-MM-dd'";
         }
 
         Optional<Project> optionalProject = projectService.findProjectByLicensePlate(licensePlate);
         if (optionalProject.isEmpty()) {
-            return "Provide a valid license plate is 'ABC123'";
+            return "Provide a valid license plate, format is 'ABC123'";
         }
         Project project = optionalProject.get();
 
-        if (localDateTime.isBefore(project.getEndDate()) || localDate.isBefore(project.getStartDate()) || localDate.isAfter(LocalDate.now())) {
+        if (localDate.isBefore(project.getEndDate()) || localDate.isBefore(project.getStartDate()) || localDate.isAfter(LocalDate.now())) {
             return "Provide a valid date";
         }
 
@@ -46,7 +45,7 @@ public class OdometerReadingService {
             return "Odometer reading must be greater than the current reading.";
         }
         project.setEndOdo(odometerInt);
-        project.setEndDate(localDateTime);
+        project.setEndDate(localDate);
         createOdometerReading(licensePlate, project.getEndOdo()-project.getStartOdo(), localDate);
 
         return "Odometer updated successfully.";

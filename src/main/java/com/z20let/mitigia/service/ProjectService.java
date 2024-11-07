@@ -20,9 +20,7 @@ public class ProjectService {
         if (ExcelToDatabaseService.validateExcelFile(file)) {
             try {
                 List<Project> projects = ExcelToDatabaseService.getProjectData(file.getInputStream());
-                for (Project project : projects) {
-                    projectRepository.saveAll(project);
-                }
+                projectRepository.saveAll(projects);
             } catch (IOException e) {
                 throw new IllegalArgumentException("This is not a valid excel file");
             }
@@ -37,8 +35,9 @@ public class ProjectService {
         return projectRepository.findAll();
     }
 
-
     public Optional<Project> findProjectByLicensePlate(String licensePlate) {
         return projectRepository.findByLicensePlate(licensePlate);
     }
+
+
 }
